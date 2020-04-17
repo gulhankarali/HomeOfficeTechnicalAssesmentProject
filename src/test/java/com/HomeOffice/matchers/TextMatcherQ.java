@@ -1,14 +1,14 @@
-package starter.matchers;
+package com.HomeOffice.matchers;
 
-public class TextMatcher {
+public class TextMatcherQ {
     private String text;
 
-    public TextMatcher(String text) {
+    public TextMatcherQ(String text) {
         this.text = text;
     }
 
-    public static TextMatcher textOf(String text) {
-        return new TextMatcher(text);
+    public static TextMatcherQ textOf(String text) {
+        return new TextMatcherQ(text);
     }
 
     public boolean containsIgnoringCase(String expectedText) {
