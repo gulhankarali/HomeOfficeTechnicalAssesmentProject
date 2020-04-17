@@ -1,7 +1,7 @@
 package com.HomeOffice.stepdefinitions;
 
 import com.HomeOffice.navigation.Navigate;
-import com.HomeOffice.search.*;
+import com.HomeOffice.pages.*;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

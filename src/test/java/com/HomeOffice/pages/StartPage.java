@@ -1,4 +1,4 @@
-package com.HomeOffice.search;
+package com.HomeOffice.pages;
 
 import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
