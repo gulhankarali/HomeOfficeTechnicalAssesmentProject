@@ -7,14 +7,15 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
 
-public class CheckNationality extends UIInteractionSteps {
+public class CheckNationalityPage extends UIInteractionSteps {
 
     static By NEXT_STEP= By.xpath("//*[text()='Next step']");
     @FindBy(id="response")
     WebElementFacade countryDropDown;
 
     @Step("Select the nationality")
-    public void select_nationality_as_Japan() {
-        countryDropDown.selectByVisibleText("Japan");
+    public void select_nationality_as(String nationality) {
+        countryDropDown.selectByVisibleText(nationality);
+        $(NEXT_STEP).click();
     }
 }
