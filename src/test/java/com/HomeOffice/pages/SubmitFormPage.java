@@ -4,12 +4,12 @@ import net.serenitybdd.core.steps.UIInteractionSteps;
 import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.By;
 
-public class SubmitForm extends UIInteractionSteps {
-    static By NEXT_STEP= By.xpath("//*[text()='Next step']");
+public class SubmitFormPage extends UIInteractionSteps {
+
+    static By PAGE_NAME= By.cssSelector("h1.gem-c-title__text");
 
     @Step("Submit the form")
-    public void submit_form(){
-        $(NEXT_STEP).click();
+    public String submit_form(){
+        return $(PAGE_NAME).getText();
     }
-
 }

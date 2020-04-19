@@ -18,16 +18,19 @@ public class VerifyVisaSituationStepDefinitions extends UIInteractionSteps {
     StartPage startPage;
 
     @Steps
-    CheckNationality checkNationality;
+    CheckNationalityPage checkNationalityPage;
 
     @Steps
-    ReastonToApply reastonToApply;
+    ReastonToApplyPage reastonToApplyPage;
 
     @Steps
-    LengthOfDuration lengthOfDuration;
+    LengthOfDurationPage lengthOfDurationPage;
 
     @Steps
-    SubmitForm submitForm;
+    DetailedReasonPage detailedReasonPage;
+
+    @Steps
+    SubmitFormPage submitFormPage;
 
     @Steps
     MessageInfoPage messageInfoPage;
@@ -45,49 +48,40 @@ public class VerifyVisaSituationStepDefinitions extends UIInteractionSteps {
     @Then("I am on the country list page")
     public void i_am_on_the_country_list_page() {
         String actualPageURL = navigate.getDriver().getCurrentUrl();
-        Assert.assertEquals("https://www.gov.uk/check-uk-visa/y",actualPageURL);
+        String expectedPageURL= "https://www.gov.uk/check-uk-visa/y";
+        Assert.assertEquals(expectedPageURL,actualPageURL);
     }
 
-    @Given("I provide a nationality of Japan")
-    public void i_provide_a_nationality_of_Japan() {
-        checkNationality.select_nationality_as_Japan();
-        submitForm.submit_form();
+    @Given("I provide a nationality of {string}")
+    public void i_provide_a_nationality_of(String nationality) {
+        checkNationalityPage.select_nationality_as(nationality);
     }
 
     @Given("I select the {string}")
     public void i_select_the(String reason) {
-        reastonToApply.select_reason(reason);
-        submitForm.submit_form();
+        reastonToApplyPage.select_reason(reason);
     }
 
-    @Given("I state I am intending to stay for more than {int} months")
-    public void i_state_I_am_intending_to_stay_for_more_than_months(int months) throws InterruptedException {
-        lengthOfDuration.length_of_stay(months+1);
+    @Given("I state I am intending to stay for {string}")
+    public void i_state_I_am_intending_to_stay_for(String length) {
+        lengthOfDurationPage.length_of_stay(length);
+    }
+    @Given("I state {string}")
+    public void i_state(String statement) {
+        detailedReasonPage.select_reason(statement);
     }
 
     @When("I submit the form")
     public void i_submit_the_form() {
-        submitForm.submit_form();
+        String expectedPageName= "Check if you need a UK visa";
+        String actualPageName= submitFormPage.submit_form();
+        Assert.assertEquals(expectedPageName,actualPageName);
     }
 
     @Then("I will be informed {string}")
     public void i_will_be_informed(String expectedMessage) {
         String actualMessage= messageInfoPage.get_message();
         Assert.assertEquals(expectedMessage, actualMessage);
-
     }
-
-    @Given("I provide a nationality of Russia")
-    public void i_provide_a_nationality_of_Russia() {
-        // Write code here that turns the phrase above into concrete actions
-
-    }
-
-    @Given("I state I am not travelling or visiting a partner or family")
-    public void i_state_I_am_not_travelling_or_visiting_a_partner_or_family() {
-        // Write code here that turns the phrase above into concrete actions
-
-    }
-
 
 }
